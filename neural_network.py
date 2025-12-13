@@ -57,7 +57,7 @@ class MLP:
         return [p for layer in self.layers for p in layer.parameters()]
     
 
-def training(model, data, label, lr, n_epoch):
+def training_loop(model, data, label, lr, n_epoch):
     for k in range(n_epoch):
 
         # forward pass 
