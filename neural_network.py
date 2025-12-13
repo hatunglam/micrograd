@@ -55,3 +55,24 @@ class MLP:
 
     def parameters(self):
         return [p for layer in self.layers for p in layer.parameters()]
+    
+
+def training(model, data, label, lr, n_epoch):
+    for k in range(n_epoch):
+
+        # forward pass 
+        y_pred = [model(x) for x in data]
+        loss = sum((ypred - y)**2 for y, ypred in zip(label, y_pred))
+
+        # zero gradients
+        for p in model.parameters():
+            p.grad = 0.0
+
+        # calculate gradients
+        loss.backward()
+
+        # update
+        for p in model.parameters():
+            p.data += -lr * p.grad
+        
+        print(k, loss.data)
