@@ -75,4 +75,4 @@ def training_loop(model, data, label, lr, n_epoch):
         for p in model.parameters():
             p.data += -lr * p.grad
         
-        print(k, loss.data)
+        print(f"epoch {k}, loss: {loss.data}")
